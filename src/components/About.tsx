@@ -112,7 +112,7 @@ const About: React.FC = () => {
 
               <div className="relative bg-white rounded-2xl shadow-2xl overflow-hidden">
                 <img
-                  src="/Portfolio/profile-image.jpg"
+                  src="/profile-image.jpg"
                   alt="Muhammad Salman Khan at work"
                   className="w-full h-[400px] object-cover"
                 />
