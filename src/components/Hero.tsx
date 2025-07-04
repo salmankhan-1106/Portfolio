@@ -215,7 +215,7 @@ const Hero: React.FC = () => {
                   transition={{ type: 'spring', stiffness: 300 }}
                 >
                   <img
-                    src="public/profile-image.jpg"
+                    src="public/my-profile.jpg"
                     alt="Muhammad Salman Khan"
                     className="w-full h-full object-cover"
                   />
