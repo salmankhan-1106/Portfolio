@@ -121,7 +121,7 @@ function App() {
                     </motion.div>
                     
                     <motion.a
-                      href="https://linkedin.com/in/your-profile"
+                      href="https://www.linkedin.com/in/muhammad-salman-khan-2110r2006/"
                       target="_blank"
                       rel="noopener noreferrer"
                       className="flex flex-col items-center text-center p-6 bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-2 group"
