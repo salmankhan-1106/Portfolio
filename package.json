@@ -3,7 +3,7 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "homepage": "https://YOUR_GITHUB_USERNAME.github.io/interactive-portfolio",
+  "homepage": "https://salmankhan-1106.github.io/Portfolio",
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
@@ -53,6 +53,7 @@
     "gh-pages": "^6.3.0",
     "postcss": "^8.4.31",
     "tailwindcss": "^3.3.5",
+    "terser": "^5.43.1",
     "typescript": "^5.0.2",
     "vite": "^4.4.5"
   }
