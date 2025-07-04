@@ -1,0 +1,240 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --primary: #3b82f6;
+  --primary-dark: #2563eb;
+  --secondary: #10b981;
+  --dark: #1e293b;
+  --light: #f8fafc;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+html {
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+body {
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+/* Enhanced smooth scrolling */
+* {
+  scroll-behavior: smooth;
+}
+
+/* Smooth scroll for all sections */
+section {
+  scroll-margin-top: 80px; /* Account for navbar height */
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(45deg, var(--primary), var(--secondary));
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(45deg, var(--primary-dark), var(--secondary));
+}
+
+/* Custom utilities */
+.gradient-text {
+  background: linear-gradient(90deg, var(--primary), var(--secondary));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.mesh-gradient {
+  background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+  background-size: 400% 400%;
+  animation: gradient 15s ease infinite;
+}
+
+.glass-effect {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.text-shadow {
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.hover-lift {
+  transition: all 0.3s ease;
+}
+
+.hover-lift:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+}
+
+/* 3D Card Flip Utilities */
+.perspective-1000 {
+  perspective: 1000px;
+}
+
+.transform-style-preserve-3d {
+  transform-style: preserve-3d;
+}
+
+.backface-hidden {
+  backface-visibility: hidden;
+}
+
+.rotate-y-180 {
+  transform: rotateY(180deg);
+}
+
+@keyframes gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* Custom Loader Animation */
+.loader {
+  position: relative;
+  width: 60px;
+  height: 60px;
+}
+
+.loader.--6::before {
+  content: '';
+  position: absolute;
+  width: var(--size-square);
+  height: var(--size-square);
+  background-color: var(--color);
+  top: calc(50% - var(--size-square));
+  left: calc(50% - var(--size-square));
+  animation: loader-6 2.4s cubic-bezier(0, 0, 0.24, 1.21) infinite;
+}
+
+@keyframes loader-6 {
+  0%, 100% {
+    transform: none;
+  }
+  
+  25% {
+    transform: translateX(100%);
+  }
+  
+  50% {
+    transform: translateX(100%) translateY(100%);
+  }
+  
+  75% {
+    transform: translateY(100%);
+  }
+}
+
+/* Bouncing Circles Animation */
+.animation-wrapper {
+  position: relative;
+  width: 240px;
+  height: 70px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+.circle {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  border-radius: 100%;
+  background-color: turquoise;
+  animation: move-the-circle 1s infinite;
+  transform-origin: center center;
+}
+
+.circle:nth-child(1) {
+  left: 0px;
+  animation-delay: 0.1s;
+}
+
+.circle:nth-child(2) {
+  left: 30px;
+  animation-delay: 0.2s;
+}
+
+.circle:nth-child(3) {
+  left: 60px;
+  animation-delay: 0.3s;
+}
+
+.circle:nth-child(4) {
+  left: 90px;
+  animation-delay: 0.4s;
+}
+
+.circle:nth-child(5) {
+  left: 120px;
+  animation-delay: 0.5s;
+}
+
+.circle:nth-child(6) {
+  left: 150px;
+  animation-delay: 0.6s;
+}
+
+.circle:nth-child(7) {
+  left: 180px;
+  animation-delay: 0.7s;
+}
+
+.circle:nth-child(8) {
+  left: 210px;
+  animation-delay: 0.8s;
+}
+
+@keyframes move-the-circle {
+  0% {
+    transform: translate(0, 0) scale(1);
+    opacity: 1;
+    background-color: turquoise;
+  }
+  50% {
+    transform: translate(0, 50px) scale(.4);
+    opacity: .5;
+    background-color: blue;
+  }
+  100% {
+    transform: translate(0, 0) scale(1);
+    opacity: 1;
+    background-color: turquoise;
+  }
+}
