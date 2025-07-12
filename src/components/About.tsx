@@ -66,8 +66,8 @@ const About: React.FC = () => {
     <section id="about" className="py-20 bg-white relative overflow-hidden">
       {/* Background Elements */}
       <div className="absolute inset-0">
-        <div className="absolute top-0 right-0 w-72 h-72 bg-blue-100 rounded-full -translate-y-1/2 translate-x-1/2 opacity-50" />
-        <div className="absolute bottom-0 left-0 w-96 h-96 bg-green-100 rounded-full translate-y-1/2 -translate-x-1/2 opacity-30" />
+        <div className="absolute top-0 right-0 w-72 h-72 bg-[#7c9885]/20 rounded-full -translate-y-1/2 translate-x-1/2 opacity-50" />
+        <div className="absolute bottom-0 left-0 w-96 h-96 bg-[#a8c4a2]/20 rounded-full translate-y-1/2 -translate-x-1/2 opacity-30" />
       </div>
 
       <motion.div
@@ -94,7 +94,7 @@ const About: React.FC = () => {
             <div className="relative">
               {/* Floating elements */}
               <motion.div
-                className="absolute -top-4 -left-4 w-24 h-24 bg-gradient-to-r from-blue-500 to-purple-600 rounded-lg opacity-20"
+                className="absolute -top-4 -left-4 w-24 h-24 bg-gradient-to-r from-[#7c9885] to-[#a8c4a2] rounded-lg opacity-20"
                 animate={{
                   rotate: [0, 180, 360],
                   scale: [1, 1.1, 1],
@@ -102,7 +102,7 @@ const About: React.FC = () => {
                 transition={{ duration: 8, repeat: Infinity }}
               />
               <motion.div
-                className="absolute -bottom-4 -right-4 w-32 h-32 bg-gradient-to-r from-green-500 to-blue-500 rounded-full opacity-15"
+                className="absolute -bottom-4 -right-4 w-32 h-32 bg-gradient-to-r from-[#a8c4a2] to-[#7c9885] rounded-full opacity-15"
                 animate={{
                   rotate: [360, 180, 0],
                   scale: [1, 1.2, 1],
@@ -121,7 +121,7 @@ const About: React.FC = () => {
 
               {/* Student badge */}
               <motion.div
-                className="absolute -bottom-6 -left-6 bg-gradient-to-r from-blue-500 to-blue-600 text-white p-6 rounded-2xl shadow-lg"
+                className="absolute -bottom-6 -left-6 bg-gradient-to-r from-[#7c9885] to-[#a8c4a2] text-white p-6 rounded-2xl shadow-lg"
                 initial={{ scale: 0, rotate: -180 }}
                 animate={inView ? { scale: 1, rotate: 0 } : {}}
                 transition={{ delay: 0.5, type: 'spring', stiffness: 150 }}
@@ -168,7 +168,7 @@ const About: React.FC = () => {
                   animate={inView ? { opacity: 1, x: 0 } : {}}
                   transition={{ delay: 0.8 + index * 0.1 }}
                 >
-                  <div className="w-2 h-2 rounded-full bg-gradient-to-r from-blue-500 to-green-500" />
+                  <div className="w-2 h-2 rounded-full bg-gradient-to-r from-[#7c9885] to-[#a8c4a2]" />
                   <span className="text-gray-700 font-medium">{skill}</span>
                 </motion.div>
               ))}
@@ -188,7 +188,7 @@ const About: React.FC = () => {
               variants={itemVariants}
               whileHover={{ scale: 1.05 }}
             >
-              <div className="bg-gradient-to-r from-blue-500 to-green-500 rounded-2xl p-6 shadow-lg hover:shadow-xl transition-shadow">
+              <div className="bg-gradient-to-r from-[#7c9885] to-[#a8c4a2] rounded-2xl p-6 shadow-lg hover:shadow-xl transition-shadow">
                 <div className="text-3xl md:text-4xl font-bold text-white mb-2">
                   {stat.number}
                 </div>
@@ -222,7 +222,7 @@ const About: React.FC = () => {
               >
                 {/* Animated background overlay */}
                 <motion.div
-                  className="absolute inset-0 bg-gradient-to-br from-blue-500 to-green-500 opacity-0 group-hover:opacity-10 transition-opacity duration-300"
+                  className="absolute inset-0 bg-gradient-to-br from-[#7c9885] to-[#a8c4a2] opacity-0 group-hover:opacity-10 transition-opacity duration-300"
                   initial={{ scale: 0 }}
                   whileHover={{ scale: 1 }}
                   transition={{ duration: 0.3 }}
@@ -231,13 +231,13 @@ const About: React.FC = () => {
                 {/* Content */}
                 <div className="relative z-10">
                   <motion.div 
-                    className="w-12 h-12 bg-gradient-to-r from-blue-500 to-green-500 rounded-lg flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300"
+                    className="w-12 h-12 bg-gradient-to-r from-[#7c9885] to-[#a8c4a2] rounded-lg flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300"
                     whileHover={{ rotate: 360 }}
                     transition={{ duration: 0.5 }}
                   >
                     <value.icon className="w-6 h-6 text-white" />
                   </motion.div>
-                  <h4 className="text-xl font-semibold text-gray-900 mb-3 group-hover:text-blue-600 transition-colors duration-300">
+                  <h4 className="text-xl font-semibold text-gray-900 mb-3 group-hover:text-[#7c9885] transition-colors duration-300">
                     {value.title}
                   </h4>
                   <p className="text-gray-600 leading-relaxed group-hover:text-gray-800 transition-colors duration-300">
@@ -247,13 +247,13 @@ const About: React.FC = () => {
 
                 {/* Decorative elements */}
                 <motion.div
-                  className="absolute top-2 right-2 w-2 h-2 bg-blue-500 rounded-full opacity-0 group-hover:opacity-100"
+                  className="absolute top-2 right-2 w-2 h-2 bg-[#7c9885] rounded-full opacity-0 group-hover:opacity-100"
                   initial={{ scale: 0 }}
                   whileHover={{ scale: 1 }}
                   transition={{ delay: 0.1 }}
                 />
                 <motion.div
-                  className="absolute bottom-2 left-2 w-3 h-3 bg-green-500 rounded-full opacity-0 group-hover:opacity-100"
+                  className="absolute bottom-2 left-2 w-3 h-3 bg-[#a8c4a2] rounded-full opacity-0 group-hover:opacity-100"
                   initial={{ scale: 0 }}
                   whileHover={{ scale: 1 }}
                   transition={{ delay: 0.2 }}

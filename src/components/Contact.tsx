@@ -32,7 +32,7 @@ const Contact: React.FC = () => {
       icon: Linkedin,
       title: 'LinkedIn',
       value: 'Connect with me',
-      link: 'https://linkedin.com/in/your-profile',
+      link: 'https://www.linkedin.com/in/muhammad-salman-khan-2110r2006/',
     },
   ]
 

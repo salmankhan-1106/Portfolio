@@ -71,7 +71,7 @@ const Hero: React.FC = () => {
   return (
     <section
       id="home"
-      className="min-h-screen flex items-center justify-center relative overflow-hidden bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900"
+      className="min-h-screen flex items-center justify-center relative overflow-hidden bg-gradient-to-br from-[#36454F] via-[#2c363c] to-[#1f2a30]"
     >
       <motion.div
         className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 z-10 text-center"
@@ -105,7 +105,7 @@ const Hero: React.FC = () => {
               <div className="text-xl md:text-2xl text-gray-300 font-medium h-8">
                 {displayText}
                 <motion.span
-                  className="inline-block w-0.5 h-6 bg-blue-500 ml-1"
+                  className="inline-block w-0.5 h-6 bg-[#7c9885] ml-1"
                   animate={{ opacity: [1, 0, 1] }}
                   transition={{ duration: 1, repeat: Infinity }}
                 />
@@ -126,7 +126,7 @@ const Hero: React.FC = () => {
               variants={itemVariants}
             >
               <motion.button
-                className="px-8 py-4 bg-gradient-to-r from-blue-500 to-blue-600 text-white rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 font-medium text-lg"
+                className="px-8 py-4 bg-gradient-to-r from-[#7c9885] to-[#a8c4a2] text-white rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 font-medium text-lg"
                 whileHover={{ scale: 1.05, y: -2 }}
                 whileTap={{ scale: 0.95 }}
                 onClick={() => document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' })}
@@ -134,7 +134,7 @@ const Hero: React.FC = () => {
                 View My Work
               </motion.button>
               <motion.button
-                className="px-8 py-4 border-2 border-blue-500 text-blue-400 rounded-lg hover:bg-blue-500 hover:text-white transition-all duration-300 font-medium text-lg"
+                className="px-8 py-4 border-2 border-[#7c9885] text-[#a8c4a2] rounded-lg hover:bg-[#7c9885] hover:text-white transition-all duration-300 font-medium text-lg"
                 whileHover={{ scale: 1.05, y: -2 }}
                 whileTap={{ scale: 0.95 }}
                 onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
@@ -152,7 +152,7 @@ const Hero: React.FC = () => {
                 href="https://www.linkedin.com/in/muhammad-salman-khan-2110r2006/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center space-x-3 px-6 py-3 bg-blue-600 hover:bg-blue-700 rounded-full text-white font-medium transition-all duration-300 shadow-lg hover:shadow-xl"
+                className="flex items-center space-x-3 px-6 py-3 bg-[#7c9885] hover:bg-[#a8c4a2] rounded-full text-white font-medium transition-all duration-300 shadow-lg hover:shadow-xl"
                 whileHover={{ scale: 1.05, y: -2 }}
                 whileTap={{ scale: 0.95 }}
                 initial={{ opacity: 0, y: 20 }}
@@ -178,7 +178,7 @@ const Hero: React.FC = () => {
               {[...Array(8)].map((_, i) => (
                 <motion.div
                   key={i}
-                  className="absolute w-4 h-4 bg-gradient-to-r from-blue-500 to-green-500 rounded-full opacity-30"
+                  className="absolute w-4 h-4 bg-gradient-to-r from-[#7c9885] to-[#a8c4a2] rounded-full opacity-30"
                   style={{
                     left: `${Math.random() * 100}%`,
                     top: `${Math.random() * 100}%`,
@@ -196,7 +196,7 @@ const Hero: React.FC = () => {
               <div className="relative w-64 h-64 md:w-80 md:h-80">
                 {/* Glowing background */}
                 <motion.div
-                  className="absolute inset-0 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full blur-2xl opacity-30"
+                  className="absolute inset-0 bg-gradient-to-r from-[#7c9885] to-[#a8c4a2] rounded-full blur-2xl opacity-30"
                   animate={{
                     scale: [1, 1.2, 1],
                     rotate: [0, 180, 360],
