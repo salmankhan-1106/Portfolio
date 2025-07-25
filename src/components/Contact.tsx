@@ -19,7 +19,11 @@ const Contact: React.FC = () => {
     {
       icon: Phone,
       title: 'Phone',
+<<<<<<< HEAD
+      value: '+92 305239121'
+=======
       value: '+92 305 2392121',
+>>>>>>> b516f7c7414cf6be18be2c560dc0a3ceb7848845
     },
     {
       icon: MapPin,

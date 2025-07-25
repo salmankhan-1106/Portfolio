@@ -100,7 +100,7 @@ function App() {
                     </motion.a>
                     
                     <motion.a
-                      href="tel:+923001234567"
+                      href="tel:+923052392121"
                       className="flex flex-col items-center text-center p-6 bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-2 group"
                       whileHover={{ scale: 1.05 }}
                       whileTap={{ scale: 0.95 }}
@@ -109,7 +109,7 @@ function App() {
                         <Phone className="w-8 h-8 text-white" />
                       </div>
                       <h3 className="text-lg font-semibold text-gray-900 mb-2">Phone</h3>
-                      <p className="text-gray-600 text-sm">+92 300 1234567</p>
+                      <p className="text-gray-600 text-sm">+92 305 2392121</p>
                     </motion.a>
                     
                     <motion.div className="flex flex-col items-center text-center p-6 bg-white rounded-xl shadow-lg">
