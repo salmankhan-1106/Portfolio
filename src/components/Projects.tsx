@@ -79,6 +79,39 @@ const Projects: React.FC = () => {
       github: '#',
       category: 'Data Science',
     },
+    {
+      id: 7,
+      title: 'Hospital Management System',
+      description: 'Full-stack React application for managing hospital appointments with doctor selection and scheduling features.',
+      longDescription: 'Comprehensive hospital management system built with React that allows patients to book appointments with their preferred doctors. Features include doctor profiles, appointment scheduling, availability management, patient registration, and appointment history. Built with modern UI/UX principles for seamless user experience.',
+      image: 'https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?w=600&h=400&fit=crop',
+      technologies: ['React', 'JavaScript', 'Node.js', 'MongoDB', 'Express', 'Tailwind CSS'],
+      features: ['Doctor selection', 'Appointment scheduling', 'Patient registration', 'Appointment history'],
+      github: 'https://github.com/salmankhan-1106/Hospital_Mangement',
+      category: 'Web Development',
+    },
+    {
+      id: 8,
+      title: 'Plant Disease Detection System',
+      description: 'Deep learning-powered CNN model that detects plant diseases and provides treatment recommendations.',
+      longDescription: 'Advanced machine learning system using Convolutional Neural Networks (CNN) with TensorFlow/Keras for real-time plant disease detection. Interactive Streamlit web app identifies 38 different plant diseases across multiple crops and provides detailed treatment recommendations. Features image upload, real-time diagnosis, and comprehensive disease information.',
+      image: 'https://images.unsplash.com/photo-1530836369250-ef72a3f5cda8?w=600&h=400&fit=crop',
+      technologies: ['Python', 'TensorFlow', 'Keras', 'CNN', 'Streamlit', 'Computer Vision'],
+      features: ['38 disease detection', 'Treatment recommendations', 'Real-time diagnosis', 'Interactive web app'],
+      github: 'https://github.com/salmankhan-1106/Plants-Diseases-Recognition-System',
+      category: 'AI/ML',
+    },
+    {
+      id: 9,
+      title: 'Gemini AI Chatbot',
+      description: 'Professional FastAPI chatbot powered by Google Gemini 1.5 Flash with real-time streaming and modern UI.',
+      longDescription: 'State-of-the-art chatbot application built with FastAPI and Google Gemini 1.5 Flash API. Features real-time streaming responses, WebSocket communication for instant messaging, session persistence for conversation history, and a sleek charcoal theme UI. Includes Lottie animations, smart text formatting, and responsive design for optimal user experience.',
+      image: 'https://images.unsplash.com/photo-1531746790731-6c087fecd65a?w=600&h=400&fit=crop',
+      technologies: ['Python', 'FastAPI', 'Google Gemini API', 'WebSockets', 'HTML/CSS', 'JavaScript'],
+      features: ['Real-time streaming', 'Session persistence', 'Lottie animations', 'Smart formatting'],
+      github: 'https://github.com/salmankhan-1106/gemini_chatbot',
+      category: 'AI/ML',
+    },
   ]
 
   const categories = ['All', 'AI/ML', 'DSA', 'OOP', 'Web Development', 'Data Science']
@@ -230,6 +263,21 @@ const Projects: React.FC = () => {
                             ))}
                           </div>
                         </div>
+
+                        {/* Action Buttons */}
+                        <div className="flex gap-4">
+                          <motion.a
+                            href={project.github}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="flex items-center gap-2 bg-gradient-to-r from-blue-500 to-green-500 text-white px-6 py-3 rounded-lg font-medium hover:shadow-lg transition-all"
+                            whileHover={{ scale: 1.05 }}
+                            whileTap={{ scale: 0.95 }}
+                          >
+                            <Github size={20} />
+                            View on GitHub
+                          </motion.a>
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -307,7 +355,7 @@ const Projects: React.FC = () => {
                 <div className="p-6">
                   <h4 className="text-xl font-bold mb-2">{project.title}</h4>
                   <p className="text-gray-300 mb-4 line-clamp-2">{project.description}</p>
-                  <div className="flex flex-wrap gap-2">
+                  <div className="flex flex-wrap gap-2 mb-4">
                     {project.technologies.slice(0, 3).map((tech) => (
                       <span
                         key={tech}
@@ -322,6 +370,18 @@ const Projects: React.FC = () => {
                       </span>
                     )}
                   </div>
+                  <motion.a
+                    href={project.github}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 bg-white/10 hover:bg-white/20 text-white px-4 py-2 rounded-lg text-sm font-medium transition-all"
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                    onClick={(e) => e.stopPropagation()}
+                  >
+                    <Github size={16} />
+                    View Code
+                  </motion.a>
                 </div>
               </motion.div>
             ))}
