@@ -23,7 +23,7 @@ const ScrollProgress: React.FC = () => {
       transition={{ duration: 0.3 }}
     >
       <motion.div
-        className="h-full bg-gradient-to-r from-blue-500 to-green-500"
+        className="h-full bg-accent"
         style={{
           width: `${scrollProgress}%`,
           transformOrigin: 'left',

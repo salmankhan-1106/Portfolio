@@ -1,391 +1,217 @@
 import React, { useState } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
+import { motion } from 'framer-motion'
 import { useInView } from 'react-intersection-observer'
-import { ExternalLink, Github, ChevronLeft, ChevronRight } from 'lucide-react'
+import { Github, ArrowUpRight } from 'lucide-react'
+
+interface Project {
+  id: number
+  title: string
+  description: string
+  technologies: string[]
+  github: string
+  category: string
+}
+
+const projects: Project[] = [
+  {
+    id: 1,
+    title: 'GoSellr AI Assistant',
+    description:
+      'AI shopping-assistant chatbot with a NestJS backend and Next.js frontend. Uses Groq\'s Llama 3.1 to ground responses in a live product catalog and stays on-topic with built-in guardrails.',
+    technologies: ['NestJS', 'Next.js', 'TypeScript', 'Groq LLM', 'Prisma'],
+    github: 'https://github.com/salmankhan-1106/GoSellr-AI-Assistant',
+    category: 'AI/ML',
+  },
+  {
+    id: 2,
+    title: 'Guarded SQL Chatbot',
+    description:
+      'A SQL-grounded chatbot for e-commerce catalogs. Every request passes through a rate limiter, topic guardrail, constrained SQL generation, and a validator before a read-only database and Gemini formatter produce the reply.',
+    technologies: ['Python', 'Google Gemini', 'PostgreSQL', 'SQL Validation'],
+    github: 'https://github.com/salmankhan-1106/Chatbot',
+    category: 'AI/ML',
+  },
+  {
+    id: 3,
+    title: 'Self-Healing MLOps Pipeline',
+    description:
+      'Production-style MLOps pipeline with Jenkins CI/CD, Dockerized deployments, Kubernetes manifests, and Prometheus/Grafana monitoring with automated alerting.',
+    technologies: ['Docker', 'Jenkins', 'Kubernetes', 'Prometheus', 'Grafana'],
+    github: 'https://github.com/salmankhan-1106/selfhealing-mlops-FA23-BAI-038',
+    category: 'MLOps & DevOps',
+  },
+  {
+    id: 4,
+    title: 'Plant Disease Recognition System',
+    description:
+      'CNN-based deep learning system that identifies 38 plant diseases across multiple crops from leaf images and recommends treatment, deployed as an interactive Streamlit app.',
+    technologies: ['TensorFlow', 'Keras', 'CNN', 'Streamlit'],
+    github: 'https://github.com/salmankhan-1106/Plants-Diseases-Recognition-System',
+    category: 'AI/ML',
+  },
+  {
+    id: 5,
+    title: 'Gemini AI Chatbot',
+    description:
+      'FastAPI chatbot powered by Google Gemini 1.5 Flash with real-time streaming over WebSockets, session persistence, and a polished custom UI.',
+    technologies: ['FastAPI', 'Gemini API', 'WebSockets', 'JavaScript'],
+    github: 'https://github.com/salmankhan-1106/gemini_chatbot',
+    category: 'AI/ML',
+  },
+  {
+    id: 6,
+    title: 'Loan Approval Prediction',
+    description:
+      'End-to-end ML workflow for loan approval: data preprocessing, classification models with hyperparameter tuning, and regression with decision trees and ensemble learners.',
+    technologies: ['Python', 'Pandas', 'Scikit-learn', 'Jupyter'],
+    github: 'https://github.com/salmankhan-1106/Loan-Prediction',
+    category: 'Data Science',
+  },
+  {
+    id: 7,
+    title: 'ML-Ops Training Pipeline',
+    description:
+      'Containerized machine learning training and deployment pipeline with Jenkins automation and Dockerized model serving.',
+    technologies: ['Python', 'Docker', 'Jenkins'],
+    github: 'https://github.com/salmankhan-1106/ML-Ops',
+    category: 'MLOps & DevOps',
+  },
+  {
+    id: 8,
+    title: 'HealthLane — Hospital Management',
+    description:
+      'Full-stack hospital management platform for patient records, doctor scheduling, and appointment booking.',
+    technologies: ['FastAPI', 'React', 'PostgreSQL', 'SQLAlchemy'],
+    github: 'https://github.com/salmankhan-1106/Hospital_Mangement',
+    category: 'Full-Stack',
+  },
+]
+
+const categories = ['All', 'AI/ML', 'MLOps & DevOps', 'Full-Stack', 'Data Science']
 
 const Projects: React.FC = () => {
   const [ref, inView] = useInView({
     triggerOnce: true,
-    threshold: 0.1,
+    threshold: 0.05,
   })
-
-  const [selectedProject, setSelectedProject] = useState<number | null>(null)
-  const [currentSlide, setCurrentSlide] = useState(0)
-
-  const projects = [
-    {
-      id: 1,
-      title: 'Face Recognition System',
-      description: 'Computer Vision system using facial recognition for identity verification and security applications.',
-      longDescription: 'Advanced computer vision project implementing facial recognition using machine learning algorithms. The system can detect, recognize, and verify faces in real-time, making it suitable for security applications, attendance systems, and access control. Built with OpenCV and deep learning models for high accuracy.',
-      image: 'https://images.unsplash.com/photo-1555255707-c07966088b7b?w=600&h=400&fit=crop',
-      technologies: ['Python', 'OpenCV', 'Machine Learning', 'Computer Vision', 'NumPy'],
-      features: ['Real-time face detection', 'Identity verification', 'High accuracy recognition', 'Security integration'],
-      github: '#',
-      category: 'AI/ML',
-    },
-    {
-      id: 2,
-      title: 'Relationship Compatibility Predictor',
-      description: 'Machine Learning model that predicts relationship compatibility based on personality traits and preferences.',
-      longDescription: 'A sophisticated ML prediction model that analyzes personality traits, interests, and behavioral patterns to predict relationship compatibility. Uses advanced algorithms to process user data and provide compatibility scores with detailed insights. The model has been trained on comprehensive datasets for accurate predictions.',
-      image: 'https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?w=600&h=400&fit=crop',
-      technologies: ['Python', 'Scikit-learn', 'Pandas', 'Machine Learning', 'Data Analysis'],
-      features: ['Compatibility scoring', 'Personality analysis', 'Behavioral patterns', 'Detailed insights'],
-      github: '#',
-      category: 'AI/ML',
-    },
-    {
-      id: 3,
-      title: 'City Distance Calculator',
-      description: 'Graph-based application implementing Dijkstra, Prim\'s, and Kruskal algorithms for optimal path finding.',
-      longDescription: 'Data Structures and Algorithms project implementing various graph algorithms to find shortest paths between cities. Features Dijkstra\'s algorithm for shortest path, Prim\'s and Kruskal\'s algorithms for minimum spanning tree. Provides visual representation of graphs and optimal route calculations.',
-      image: 'https://images.unsplash.com/photo-1524661135-423995f22d0b?w=600&h=400&fit=crop',
-      technologies: ['Java', 'Graph Algorithms', 'Data Structures', 'Dijkstra', 'Prim\'s & Kruskal\'s'],
-      features: ['Shortest path calculation', 'Multiple algorithm implementation', 'Visual graph representation', 'Route optimization'],
-      github: '#',
-      category: 'DSA',
-    },
-    {
-      id: 4,
-      title: 'HR Management System',
-      description: 'Comprehensive Human Resource management system built with JavaFX for employee management and operations.',
-      longDescription: 'Object-Oriented Programming project featuring a complete HR management solution. Handles employee records, payroll management, attendance tracking, performance evaluation, and reporting. Built with JavaFX for an intuitive desktop interface with modern UI components and database integration.',
-      image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&h=400&fit=crop',
-      technologies: ['Java', 'JavaFX', 'OOP Principles', 'Database Integration', 'Desktop Application'],
-      features: ['Employee management', 'Payroll system', 'Attendance tracking', 'Performance evaluation'],
-      github: '#',
-      category: 'OOP',
-    },
-    {
-      id: 5,
-      title: 'Interactive Portfolio Website',
-      description: 'Modern, responsive portfolio website built with React, featuring smooth animations and interactive elements.',
-      longDescription: 'A professional portfolio website showcasing advanced React development skills. Features smooth scrolling, interactive animations with Framer Motion, responsive design with Tailwind CSS, and modern UI/UX principles. Includes contact form integration, dynamic content, and optimized performance.',
-      image: 'https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?w=600&h=400&fit=crop',
-      technologies: ['React', 'TypeScript', 'Framer Motion', 'Tailwind CSS', 'Vite'],
-      features: ['Responsive design', 'Smooth animations', 'Interactive elements', 'Modern UI/UX'],
-      github: '#',
-      category: 'Web Development',
-    },
-    {
-      id: 6,
-      title: 'Comprehensive Data Analysis Suite',
-      description: 'Advanced data science toolkit for Exploratory Data Analysis (EDA) with comprehensive visualization capabilities.',
-      longDescription: 'Professional data analysis platform specializing in Exploratory Data Analysis (EDA). Provides comprehensive statistical analysis, data visualization, pattern recognition, and insight generation. Features automated EDA reports, interactive dashboards, and advanced analytics for data-driven decision making.',
-      image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&h=400&fit=crop',
-      technologies: ['Python', 'Pandas', 'NumPy', 'Matplotlib', 'Seaborn', 'Jupyter'],
-      features: ['Automated EDA', 'Statistical analysis', 'Data visualization', 'Pattern recognition'],
-      github: '#',
-      category: 'Data Science',
-    },
-    {
-      id: 7,
-      title: 'Hospital Management System',
-      description: 'Full-stack React application for managing hospital appointments with doctor selection and scheduling features.',
-      longDescription: 'Comprehensive hospital management system built with React that allows patients to book appointments with their preferred doctors. Features include doctor profiles, appointment scheduling, availability management, patient registration, and appointment history. Built with modern UI/UX principles for seamless user experience.',
-      image: 'https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?w=600&h=400&fit=crop',
-      technologies: ['React', 'JavaScript', 'Node.js', 'MongoDB', 'Express', 'Tailwind CSS'],
-      features: ['Doctor selection', 'Appointment scheduling', 'Patient registration', 'Appointment history'],
-      github: 'https://github.com/salmankhan-1106/Hospital_Mangement',
-      category: 'Web Development',
-    },
-    {
-      id: 8,
-      title: 'Plant Disease Detection System',
-      description: 'Deep learning-powered CNN model that detects plant diseases and provides treatment recommendations.',
-      longDescription: 'Advanced machine learning system using Convolutional Neural Networks (CNN) with TensorFlow/Keras for real-time plant disease detection. Interactive Streamlit web app identifies 38 different plant diseases across multiple crops and provides detailed treatment recommendations. Features image upload, real-time diagnosis, and comprehensive disease information.',
-      image: 'https://images.unsplash.com/photo-1530836369250-ef72a3f5cda8?w=600&h=400&fit=crop',
-      technologies: ['Python', 'TensorFlow', 'Keras', 'CNN', 'Streamlit', 'Computer Vision'],
-      features: ['38 disease detection', 'Treatment recommendations', 'Real-time diagnosis', 'Interactive web app'],
-      github: 'https://github.com/salmankhan-1106/Plants-Diseases-Recognition-System',
-      category: 'AI/ML',
-    },
-    {
-      id: 9,
-      title: 'Gemini AI Chatbot',
-      description: 'Professional FastAPI chatbot powered by Google Gemini 1.5 Flash with real-time streaming and modern UI.',
-      longDescription: 'State-of-the-art chatbot application built with FastAPI and Google Gemini 1.5 Flash API. Features real-time streaming responses, WebSocket communication for instant messaging, session persistence for conversation history, and a sleek charcoal theme UI. Includes Lottie animations, smart text formatting, and responsive design for optimal user experience.',
-      image: 'https://images.unsplash.com/photo-1531746790731-6c087fecd65a?w=600&h=400&fit=crop',
-      technologies: ['Python', 'FastAPI', 'Google Gemini API', 'WebSockets', 'HTML/CSS', 'JavaScript'],
-      features: ['Real-time streaming', 'Session persistence', 'Lottie animations', 'Smart formatting'],
-      github: 'https://github.com/salmankhan-1106/gemini_chatbot',
-      category: 'AI/ML',
-    },
-  ]
-
-  const categories = ['All', 'AI/ML', 'DSA', 'OOP', 'Web Development', 'Data Science']
   const [selectedCategory, setSelectedCategory] = useState('All')
 
-  const filteredProjects = selectedCategory === 'All' 
-    ? projects 
-    : projects.filter(project => project.category === selectedCategory)
-
-  const nextSlide = () => {
-    setCurrentSlide((prev) => (prev + 1) % filteredProjects.length)
-  }
-
-  const prevSlide = () => {
-    setCurrentSlide((prev) => (prev - 1 + filteredProjects.length) % filteredProjects.length)
-  }
+  const filteredProjects =
+    selectedCategory === 'All' ? projects : projects.filter((p) => p.category === selectedCategory)
 
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
-      transition: {
-        staggerChildren: 0.1,
-      },
+      transition: { staggerChildren: 0.08 },
     },
   }
 
   const itemVariants = {
-    hidden: { y: 30, opacity: 0 },
+    hidden: { y: 20, opacity: 0 },
     visible: {
       y: 0,
       opacity: 1,
-      transition: {
-        type: 'spring',
-        stiffness: 100,
-        damping: 12,
-      },
+      transition: { duration: 0.4, ease: 'easeOut' },
     },
   }
 
   return (
-    <section id="projects" className="py-20 bg-gradient-to-br from-gray-900 to-gray-800 text-white relative overflow-hidden">
-      {/* Background Elements */}
-      <div className="absolute inset-0">
-        <div className="absolute top-0 left-1/4 w-96 h-96 bg-blue-500 rounded-full opacity-5 blur-3xl" />
-        <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-green-500 rounded-full opacity-5 blur-3xl" />
-      </div>
-
+    <section id="projects" className="py-24 bg-ink">
       <motion.div
         ref={ref}
-        className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10"
+        className="max-w-6xl mx-auto px-6 lg:px-8"
         variants={containerVariants}
         initial="hidden"
         animate={inView ? 'visible' : 'hidden'}
       >
         {/* Section Header */}
-        <motion.div className="text-center mb-16" variants={itemVariants}>
-          <h2 className="text-4xl md:text-5xl font-bold mb-4">
-            Featured <span className="gradient-text">Projects</span>
+        <motion.div className="mb-12 max-w-2xl" variants={itemVariants}>
+          <p className="text-accent-light font-semibold text-sm uppercase tracking-wide mb-3" style={{ color: '#818CF8' }}>
+            Projects
+          </p>
+          <h2 className="text-3xl md:text-4xl font-bold text-white mb-5">
+            Selected work from my GitHub
           </h2>
-          <p className="text-xl text-gray-300 max-w-3xl mx-auto">
-            A showcase of my best work, demonstrating expertise in various technologies
-            and problem-solving approaches.
+          <p className="text-lg text-gray-400 leading-relaxed">
+            Every project below links directly to its source code. All of my work is
+            public — take a look at the implementation, not just the pitch.
           </p>
         </motion.div>
 
         {/* Category Filter */}
-        <motion.div className="flex justify-center mb-12" variants={itemVariants}>
-          <div className="flex flex-wrap justify-center gap-4">
-            {categories.map((category) => (
-              <motion.button
-                key={category}
-                onClick={() => {
-                  setSelectedCategory(category)
-                  setCurrentSlide(0)
-                }}
-                className={`px-6 py-3 rounded-full font-medium transition-all ${
-                  selectedCategory === category
-                    ? 'bg-gradient-to-r from-blue-500 to-green-500 text-white'
-                    : 'bg-white/10 text-gray-300 hover:bg-white/20'
-                }`}
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                {category}
-              </motion.button>
-            ))}
-          </div>
-        </motion.div>
-
-        {/* Projects Carousel */}
-        <motion.div className="relative mb-16" variants={itemVariants}>
-          <div className="overflow-hidden rounded-2xl">
-            <motion.div
-              className="flex"
-              animate={{ x: `-${currentSlide * 100}%` }}
-              transition={{ type: 'spring', stiffness: 300, damping: 30 }}
+        <motion.div className="flex flex-wrap gap-3 mb-10" variants={itemVariants}>
+          {categories.map((category) => (
+            <button
+              key={category}
+              onClick={() => setSelectedCategory(category)}
+              className={`px-4 py-2 rounded-md text-sm font-medium transition-colors ${
+                selectedCategory === category
+                  ? 'bg-accent text-white'
+                  : 'bg-white/5 text-gray-300 hover:bg-white/10'
+              }`}
             >
-              {filteredProjects.map((project) => (
-                <div key={project.id} className="w-full flex-shrink-0">
-                  <div className="bg-white/5 backdrop-blur-sm rounded-2xl overflow-hidden">
-                    <div className="grid lg:grid-cols-2 gap-8 p-8">
-                      {/* Project Image */}
-                      <div className="relative group">
-                        <img
-                          src={project.image}
-                          alt={project.title}
-                          className="w-full h-64 lg:h-80 object-cover rounded-xl"
-                        />
-                        <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent rounded-xl" />
-                        <div className="absolute top-4 right-4">
-                          <span className="bg-blue-500 text-white px-3 py-1 rounded-full text-sm font-medium">
-                            {project.category}
-                          </span>
-                        </div>
-                      </div>
-
-                      {/* Project Details */}
-                      <div className="flex flex-col justify-center">
-                        <h3 className="text-2xl lg:text-3xl font-bold mb-4">{project.title}</h3>
-                        <p className="text-gray-300 mb-6 leading-relaxed">
-                          {project.longDescription}
-                        </p>
-
-                        {/* Technologies */}
-                        <div className="mb-6">
-                          <h4 className="text-lg font-semibold mb-3">Technologies Used:</h4>
-                          <div className="flex flex-wrap gap-2">
-                            {project.technologies.map((tech) => (
-                              <span
-                                key={tech}
-                                className="bg-gradient-to-r from-blue-500 to-green-500 text-white px-3 py-1 rounded-full text-sm"
-                              >
-                                {tech}
-                              </span>
-                            ))}
-                          </div>
-                        </div>
-
-                        {/* Features */}
-                        <div className="mb-6">
-                          <h4 className="text-lg font-semibold mb-3">Key Features:</h4>
-                          <div className="grid grid-cols-2 gap-2">
-                            {project.features.map((feature) => (
-                              <div key={feature} className="flex items-center space-x-2">
-                                <div className="w-2 h-2 rounded-full bg-green-500" />
-                                <span className="text-gray-300">{feature}</span>
-                              </div>
-                            ))}
-                          </div>
-                        </div>
-
-                        {/* Action Buttons */}
-                        <div className="flex gap-4">
-                          <motion.a
-                            href={project.github}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="flex items-center gap-2 bg-gradient-to-r from-blue-500 to-green-500 text-white px-6 py-3 rounded-lg font-medium hover:shadow-lg transition-all"
-                            whileHover={{ scale: 1.05 }}
-                            whileTap={{ scale: 0.95 }}
-                          >
-                            <Github size={20} />
-                            View on GitHub
-                          </motion.a>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </motion.div>
-          </div>
-
-          {/* Navigation Buttons */}
-          {filteredProjects.length > 1 && (
-            <>
-              <motion.button
-                onClick={prevSlide}
-                className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-white/10 backdrop-blur-sm p-3 rounded-full hover:bg-white/20 transition-all"
-                whileHover={{ scale: 1.1 }}
-                whileTap={{ scale: 0.9 }}
-              >
-                <ChevronLeft size={24} />
-              </motion.button>
-              <motion.button
-                onClick={nextSlide}
-                className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-white/10 backdrop-blur-sm p-3 rounded-full hover:bg-white/20 transition-all"
-                whileHover={{ scale: 1.1 }}
-                whileTap={{ scale: 0.9 }}
-              >
-                <ChevronRight size={24} />
-              </motion.button>
-            </>
-          )}
-
-          {/* Slide Indicators */}
-          {filteredProjects.length > 1 && (
-            <div className="flex justify-center mt-8 space-x-2">
-              {filteredProjects.map((_, index) => (
-                <motion.button
-                  key={index}
-                  onClick={() => setCurrentSlide(index)}
-                  className={`w-3 h-3 rounded-full transition-all ${
-                    index === currentSlide ? 'bg-blue-500' : 'bg-white/30'
-                  }`}
-                  whileHover={{ scale: 1.2 }}
-                />
-              ))}
-            </div>
-          )}
+              {category}
+            </button>
+          ))}
         </motion.div>
 
         {/* Projects Grid */}
-        <motion.div variants={itemVariants}>
-          <h3 className="text-2xl font-bold text-center mb-12">All Projects</h3>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {filteredProjects.map((project, index) => (
-              <motion.div
-                key={project.id}
-                className="bg-white/5 backdrop-blur-sm rounded-xl overflow-hidden hover:bg-white/10 transition-all duration-300 cursor-pointer"
-                initial={{ opacity: 0, y: 50 }}
-                animate={inView ? { opacity: 1, y: 0 } : {}}
-                transition={{ delay: index * 0.1 }}
-                whileHover={{ scale: 1.02, y: -5 }}
-                onClick={() => setSelectedProject(project.id)}
-              >
-                <div className="relative">
-                  <img
-                    src={project.image}
-                    alt={project.title}
-                    className="w-full h-48 object-cover"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
-                  <div className="absolute top-4 right-4">
-                    <span className="bg-blue-500 text-white px-2 py-1 rounded-full text-xs font-medium">
-                      {project.category}
-                    </span>
-                  </div>
-                </div>
-                <div className="p-6">
-                  <h4 className="text-xl font-bold mb-2">{project.title}</h4>
-                  <p className="text-gray-300 mb-4 line-clamp-2">{project.description}</p>
-                  <div className="flex flex-wrap gap-2 mb-4">
-                    {project.technologies.slice(0, 3).map((tech) => (
-                      <span
-                        key={tech}
-                        className="bg-gradient-to-r from-blue-500 to-green-500 text-white px-2 py-1 rounded text-xs"
-                      >
-                        {tech}
-                      </span>
-                    ))}
-                    {project.technologies.length > 3 && (
-                      <span className="text-gray-400 text-xs">
-                        +{project.technologies.length - 3} more
-                      </span>
-                    )}
-                  </div>
-                  <motion.a
-                    href={project.github}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 bg-white/10 hover:bg-white/20 text-white px-4 py-2 rounded-lg text-sm font-medium transition-all"
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                    onClick={(e) => e.stopPropagation()}
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {filteredProjects.map((project) => (
+            <motion.a
+              key={project.id}
+              href={project.github}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group flex flex-col bg-white/[0.03] border border-white/10 rounded-xl p-6 hover:border-accent/50 hover:bg-white/[0.06] transition-all duration-300"
+              variants={itemVariants}
+            >
+              <div className="flex items-start justify-between mb-4">
+                <span className="text-xs font-semibold text-accent-light bg-accent/10 px-2.5 py-1 rounded" style={{ color: '#A5B4FC' }}>
+                  {project.category}
+                </span>
+                <ArrowUpRight
+                  size={18}
+                  className="text-gray-500 group-hover:text-white transition-colors"
+                />
+              </div>
+
+              <h3 className="text-lg font-semibold text-white mb-2">{project.title}</h3>
+              <p className="text-sm text-gray-400 leading-relaxed mb-5 flex-grow">
+                {project.description}
+              </p>
+
+              <div className="flex flex-wrap gap-2 mb-4">
+                {project.technologies.map((tech) => (
+                  <span
+                    key={tech}
+                    className="text-xs font-medium text-gray-400 bg-white/5 px-2 py-1 rounded"
                   >
-                    <Github size={16} />
-                    View Code
-                  </motion.a>
-                </div>
-              </motion.div>
-            ))}
-          </div>
+                    {tech}
+                  </span>
+                ))}
+              </div>
+
+              <div className="flex items-center gap-2 text-sm font-medium text-gray-300 group-hover:text-white transition-colors pt-2 border-t border-white/10">
+                <Github size={16} />
+                View on GitHub
+              </div>
+            </motion.a>
+          ))}
+        </div>
+
+        {/* View all CTA */}
+        <motion.div className="text-center mt-14" variants={itemVariants}>
+          <a
+            href="https://github.com/salmankhan-1106"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 px-7 py-3.5 border border-white/20 text-white rounded-md font-semibold hover:bg-white/5 transition-colors"
+          >
+            <Github size={18} />
+            View All Projects on GitHub
+          </a>
         </motion.div>
       </motion.div>
     </section>
